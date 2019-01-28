@@ -79,6 +79,15 @@ module NoticesHelper
     false
   end
 
+  def with_redacted_urls(text)
+    redacted_text = text.gsub(
+      %r{(http[s]?://[w]*[\.]*[^/|$]*)(\S*)},
+      '\1/[REDACTED]'
+    )
+
+    redacted_text
+  end
+
   private
 
   def infringing_url_label(notice)
